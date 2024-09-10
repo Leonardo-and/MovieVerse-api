@@ -1,0 +1,24 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Movie {
+    id                 String   @id @unique
+    title              String   @unique
+    overview           String
+    posterFilename     String   @unique @map("poster_filename")
+    videoFilename      String   @unique @map("video_filename")
+    backgroundFilename String   @unique @map("background_filename")
+    logoFilename       String   @unique @map("logo_filename")
+    genres             String[]
+    cast               String[]
+    duration           Int
+    releaseDate        DateTime @map("release_date")
+    createdAt          DateTime @default(now())
+    updatedAt          DateTime @updatedAt
+}
