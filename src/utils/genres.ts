@@ -1,4 +1,6 @@
-export const genres = [
+import { TMDBMovie } from '@/repositories/TMDBMovie'
+
+const genres = [
   {
     id: 28,
     name: 'Action',
@@ -76,3 +78,12 @@ export const genres = [
     name: 'Western',
   },
 ]
+
+export function mapGenreIdsToNames(movies: TMDBMovie[]) {
+  return movies.map((movie) => ({
+    ...movie,
+    genres: movie.genre_ids
+      .map((id) => genres.find((g) => g.id === id)?.name)
+      .filter(Boolean),
+  }))
+}

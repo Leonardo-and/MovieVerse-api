@@ -54,7 +54,7 @@ class ErrorMiddleware {
         data: {},
       })
     }
-    logger.error(`Internal Server Error: ${JSON.stringify(error)}`)
+    logger.error(`Internal Server Error: ${JSON.stringify(error.stack)}`)
 
     return res.status(500).json({
       error: true,

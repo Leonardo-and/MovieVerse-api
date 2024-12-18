@@ -6,6 +6,7 @@ import compression from 'compression'
 import { movieRoutes } from '@/routes/movie.routes'
 import { corsConfig } from '@/config/cors.config'
 import { errorMiddleware } from '@/errors/error.middleware'
+import { movieApiRoutes } from '@/routes/movieApi.routes'
 
 class Application {
   app = express()
@@ -27,6 +28,7 @@ class Application {
   }
 
   private setRoutes() {
+    this.app.use('/api/v1', movieApiRoutes)
     this.app.use('/api/v1', movieRoutes)
   }
 }
